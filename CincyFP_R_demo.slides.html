@@ -11824,44 +11824,7 @@ a.anchor-link {
 
 <div class="reveal">
 <div class="slides">
-<aside class="notes">
-
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Rough-Outline">Rough Outline<a class="anchor-link" href="#Rough-Outline">&#182;</a></h1><h2 id="Core">Core<a class="anchor-link" href="#Core">&#182;</a></h2><ul>
-<li>Vectors, Boolean vectors, indexing</li>
-<li>Matrices &amp; indexing</li>
-<li>Negative indices</li>
-<li>Defining functions<ul>
-<li>Function composition</li>
-<li>Function scoping</li>
-<li>Pass-by-value</li>
-</ul>
-</li>
-<li>Dataframes (mtcars)</li>
-<li>Missing values</li>
-<li>Factors</li>
-</ul>
-<h2 id="Data-transformation">Data transformation<a class="anchor-link" href="#Data-transformation">&#182;</a></h2><ul>
-<li>Wide-format vs. long-format</li>
-</ul>
-<h2 id="Visualization">Visualization<a class="anchor-link" href="#Visualization">&#182;</a></h2><h2 id="reshape2,-dplyr">reshape2, dplyr<a class="anchor-link" href="#reshape2,-dplyr">&#182;</a></h2><h2 id="Misc">Misc<a class="anchor-link" href="#Misc">&#182;</a></h2><ul>
-<li><code>help(...)</code> or <code>? ...</code></li>
-<li>Tab-completion in Jupyter</li>
-<li>SparkR (if possible)</li>
-</ul>
-<h2 id="To-do">To-do<a class="anchor-link" href="#To-do">&#182;</a></h2><ul>
-<li>dpylr examples</li>
-<li>ggplot2 examples</li>
-</ul>
-
-</div>
-</div>
-</div>
-</aside><section><section>
+<section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12025,7 +11988,21 @@ Just use <a href="https://cran.r-project.org/package=dplyr">dplyr</a> or <a href
 <h2 id="Obligatory-R-notebook-demonstration...">Obligatory R notebook demonstration...<a class="anchor-link" href="#Obligatory-R-notebook-demonstration...">&#182;</a></h2>
 </div>
 </div>
-</div></section></section><section><section>
+</div><aside class="notes">
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Put some R examples here</li>
+</ul>
+
+</div>
+</div>
+</div>
+</aside></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12033,11 +12010,13 @@ Just use <a href="https://cran.r-project.org/package=dplyr">dplyr</a> or <a href
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Dataframes">Dataframes<a class="anchor-link" href="#Dataframes">&#182;</a></h2><ul>
 <li>A sort of blending of matrices, arrays, and database tables.</li>
-<li>Just use them.</li>
-<li>They are useful enough to spawn imitators:<ul>
+<li>They are useful enough to spawn many imitators:<ul>
 <li><em>Python</em>: Pandas &amp; wrapped NumPy arrays, <a href="http://pandas.pydata.org/">http://pandas.pydata.org/</a></li>
 <li><em>Scala</em> (and JVM in general): Apache Spark distributed dataframes, <a href="https://spark.apache.org/docs/latest/sql-programming-guide.html#datasets-and-dataframes">https://spark.apache.org/docs/latest/sql-programming-guide.html#datasets-and-dataframes</a></li>
-<li><em>Haskell</em>: Frames, <a href="https://github.com/acowley/Frames">https://github.com/acowley/Frames</a></li>
+<li><em>Haskell</em>: Frames, <a href="https://github.com/acowley/Frames">https://github.com/acowley/Frames</a><ul>
+<li>acowley incidentally does some embedded Haskell too</li>
+</ul>
+</li>
 <li><em>Clojure</em>: Incanter (?), <a href="http://incanter.org/">http://incanter.org/</a></li>
 <li><em>Julia</em>: <a href="https://github.com/JuliaStats/DataFrames.jl">https://github.com/JuliaStats/DataFrames.jl</a></li>
 </ul>
@@ -12046,7 +12025,22 @@ Just use <a href="https://cran.r-project.org/package=dplyr">dplyr</a> or <a href
 
 </div>
 </div>
-</div></section></section><section><section>
+</div><aside class="notes">
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>More R examples...</li>
+<li>but lead quickly into dplyr</li>
+</ul>
+
+</div>
+</div>
+</div>
+</aside></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12059,14 +12053,31 @@ Just use <a href="https://cran.r-project.org/package=dplyr">dplyr</a> or <a href
 <li><code>select</code>, <code>rename</code> - Select columns</li>
 <li><code>distinct</code> - Choose only <em>distinct</em> rows</li>
 <li><code>mutate</code>, <code>transmute</code> - Make new columns from existing ones</li>
-<li><code>summarise</code> - Collapse frame to single row with aggregate functions</li>
+<li><code>summarise</code> - 'Peel off' one grouping level (or collapse frame to one row) with aggregate functions</li>
 <li><code>sample_n</code>, <code>sample_frac</code> - Randomly sample (by count or by percentage)</li>
 <li><code>group_by</code> - Group observations (most of above worked on grouped observations)</li>
+<li>All dplyr calls are side-effect-free, and <code>x %&gt;% f(y) = f(x,y)</code></li>
+<li>Bonus: This all works on remote SQL databases too (and <code>data.table</code> via <code>dtplyr</code>)</li>
 </ul>
 
 </div>
 </div>
-</div></section></section><section><section>
+</div><aside class="notes">
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>dplyr examples here</li>
+<li>next: a "real" dataset</li>
+</ul>
+
+</div>
+</div>
+</div>
+</aside></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12079,10 +12090,11 @@ Just use <a href="https://cran.r-project.org/package=dplyr">dplyr</a> or <a href
 
 </div>
 </div>
-</div><div class="fragment">
+</div><aside class="notes">
+
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[131]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># I&#39;m not going to remember this code</span>
@@ -12097,7 +12109,45 @@ Just use <a href="https://cran.r-project.org/package=dplyr">dplyr</a> or <a href
 </div>
 </div>
 
-</div></div></section></section><section><section>
+</div>
+</aside></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Unsupervised-Learning">Unsupervised Learning<a class="anchor-link" href="#Unsupervised-Learning">&#182;</a></h2><ul>
+<li>Sometimes a precursor to supervised learning</li>
+<li>Sometimes done for its own sake</li>
+<li>Some broad (and overlapping) categories:<ul>
+<li>Latent variable models</li>
+<li>Clustering</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div><aside class="notes">
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Contrast: Most ML talks so far have been on supervised learning.</li>
+<li><em>Hidden structure</em> of the data</li>
+<li>k-means, and EM is generalization</li>
+<li>Overlap: EM is both categories</li>
+<li>Curse of Dimensionality: why UL may be needed prior to SL</li>
+<li>Why feature transformation: how do we reduce dimensions?</li>
+</ul>
+
+</div>
+</div>
+</div>
+</aside></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12106,7 +12156,21 @@ Just use <a href="https://cran.r-project.org/package=dplyr">dplyr</a> or <a href
 <h2 id="Curse-of-Dimensionality-(Bellman)"><em>Curse of Dimensionality</em> (Bellman)<a class="anchor-link" href="#Curse-of-Dimensionality-(Bellman)">&#182;</a></h2>
 </div>
 </div>
-</div></section><section>
+</div><aside class="notes">
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>same Bellman behind Bellman equation that is basis of control theory, RL, and a lot of AI </li>
+</ul>
+
+</div>
+</div>
+</div>
+</aside><div class="fragment">
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12116,7 +12180,7 @@ Just use <a href="https://cran.r-project.org/package=dplyr">dplyr</a> or <a href
 
 </div>
 </div>
-</div></section><section>
+</div></div></section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12135,6 +12199,7 @@ Just use <a href="https://cran.r-project.org/package=dplyr">dplyr</a> or <a href
 <ul>
 <li>Intuition from k-nearest neighbor: If each sample occupies a certain amount of 'space' in the input space, the number of samples required to still 'cover' that space increases exponentially with the number of dimensions.</li>
 <li>If possible: Don't add more dimensions. Either reduce dimensions, or increase samples.</li>
+<li>But... how to remove dimensions?</li>
 </ul>
 
 </div>
@@ -12149,7 +12214,22 @@ Just use <a href="https://cran.r-project.org/package=dplyr">dplyr</a> or <a href
 
 </div>
 </div>
-</div></section><section>
+</div><aside class="notes">
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Kernel trick, dot product</li>
+<li>Feature selection = simpler form</li>
+</ul>
+
+</div>
+</div>
+</div>
+</aside></section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12158,35 +12238,28 @@ Just use <a href="https://cran.r-project.org/package=dplyr">dplyr</a> or <a href
 <h3 id="Subsets">Subsets<a class="anchor-link" href="#Subsets">&#182;</a></h3><ul>
 <li><em>Feature Selection</em>: Loosely, throw away dimensions/features.</li>
 <li>Information gain, Gini index, entropy, variance, statistical independence...</li>
-</ul>
-
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
 <li><em>Filtering</em>: Reduce features first, and then perform learning. Learning can't feed information 'back' to filtering.</li>
-</ul>
-
-</div>
-</div>
-</div></div><div class="fragment">
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
 <li><em>Wrapping</em>: Reduce features based on how learning performs.</li>
 </ul>
 
 </div>
 </div>
-</div></div></section><section>
+</div><aside class="notes">
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Decision trees are sort of a form of wrapping</li>
+<li>Linear is the subset that I focus on</li>
+</ul>
+
+</div>
+</div>
+</div>
+</aside></section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12227,7 +12300,22 @@ $$</p>
 
 </div>
 </div>
-</div></div></section></section><section><section>
+</div><aside class="notes">
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Take the above type (F^N-&gt;F^M), and make more explicit/algebraic</li>
+<li>Bear with me, might be math-heavy</li>
+</ul>
+
+</div>
+</div>
+</div>
+</aside></div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12402,6 +12490,58 @@ $$<ul>
 <li>That magical transform matrix $P$ equals a matrix whose columns are eigenvectors of $X^\top X$. (Left as an exercise for the reader.)  Since covariance matrix $X^\top X$ is a symmetric and positive semidefinite matrix, its eigenvectors form an orthogonal basis with non-negative eigenvalues (obviously).</li>
 <li>Eigenvectors are the <em>principal components</em> of $X$ (in order, if eigenvalues decreasing).</li>
 <li>Corresponding eigenvalues are the variance of $X$ 'along' each component (also equal to the diagonals of $\mathbf{S}_Y$) - or the 'variance explained' by each component</li>
+</ul>
+
+</div>
+</div>
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Dimensionality-Reduction">Dimensionality Reduction<a class="anchor-link" href="#Dimensionality-Reduction">&#182;</a></h2><ul>
+<li>$P$ is an $m\times m$ matrix. Every column is a component, and they are ranked by variance.</li>
+<li>Data matrix $X$ is $n \times m$.</li>
+<li>$Y=XP$ then is also $n \times m$, and is the result of projecting each sample in $X$ onto each component.<ul>
+<li>In effect, a coordinate transform</li>
+<li>A reversible one; since $P$ is an orthogonal basis, $P^{-1}=P^\top$, $X=YP^\top$</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>$Y$ is in a new space, still $m$-dimensional.<ul>
+<li>1st column = 1st dimension = $X$'s projection on most important component</li>
+<li>2nd column = 2nd dimension = $X$'s projection on 2nd most important component</li>
+<li>and so on.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Two equivalent ways of reducing dimensionality:<ul>
+<li>Throw away "less important" dimensions from the end of $Y$, e.g. let $Y_d$ = the 1st $d$ columns of $Y$ ($n\times d$ matrix)</li>
+<li>Or, let $P_d$ equal the first $d$ columns of $P$ ($m\times d$ matrix), then $Y_d=XP_d$</li>
+</ul>
+</li>
+<li>'Lossy' reconstruction back into original $m$-dimensional space: $\hat{X}=Y_dP_d^\top$</li>
 </ul>
 
 </div>
