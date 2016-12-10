@@ -11990,17 +11990,41 @@ Just use <a href="https://cran.r-project.org/package=dplyr">dplyr</a> or <a href
 </div>
 </div><aside class="notes">
 
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>Put some R examples here</li>
-</ul>
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="kn">library</span><span class="p">(</span>ggplot2<span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span>dplyr<span class="p">)</span>
+<span class="c1"># Arithmetic</span>
+<span class="c1"># Variables</span>
+<span class="c1"># Function example</span>
+<span class="c1"># Show help example</span>
+<span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">)</span>
+<span class="m">0</span><span class="o">:</span><span class="m">10</span>
+<span class="kp">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">10</span><span class="p">,</span><span class="m">0.2</span><span class="p">)</span>
+x <span class="o">&lt;-</span> <span class="m">1</span><span class="o">:</span><span class="m">10</span>
+x <span class="o">+</span> <span class="m">5</span>
+x <span class="o">+</span> x
+x<span class="p">[</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">)]</span>
+x <span class="o">&lt;</span> <span class="m">5</span>
+x<span class="p">[</span>x <span class="o">&lt;</span> <span class="m">5</span><span class="p">]</span>
+<span class="kp">sum</span><span class="p">(</span>x<span class="p">)</span>
+x<span class="o">*</span><span class="m">10</span>
+x <span class="o">+</span> <span class="m">10</span>
+x <span class="o">*</span> x
+<span class="kp">mean</span><span class="p">(</span>x<span class="p">)</span>
+<span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="kc">NA</span><span class="p">,</span><span class="kc">NA</span><span class="p">,</span><span class="m">10</span><span class="p">)</span>
+<span class="kp">prod</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="kc">NA</span><span class="p">,</span><span class="kc">NA</span><span class="p">,</span><span class="m">10</span><span class="p">),</span> na.rm <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<span class="c1"># NA != NaN != Inf:</span>
+<span class="kt">c</span><span class="p">(</span><span class="kp">sqrt</span><span class="p">(</span><span class="m">-1</span><span class="p">),</span> <span class="m">1</span><span class="o">/</span><span class="m">0</span><span class="p">)</span>
+</pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 </aside></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
@@ -12027,18 +12051,26 @@ Just use <a href="https://cran.r-project.org/package=dplyr">dplyr</a> or <a href
 </div>
 </div><aside class="notes">
 
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>More R examples...</li>
-<li>but lead quickly into dplyr</li>
-</ul>
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span>df <span class="o">&lt;-</span> <span class="kt">data.frame</span><span class="p">(</span>a <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> b <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="kt">c</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
+<span class="c1"># Broadcasting (from above)</span>
+df<span class="o">$</span>d <span class="o">&lt;-</span> <span class="m">6</span>
+<span class="c1"># Column access:</span>
+df<span class="p">[,</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">)]</span>
+<span class="c1"># Row access:</span>
+df<span class="p">[</span><span class="m">4</span><span class="o">:</span><span class="m">7</span><span class="p">,]</span>
+<span class="c1"># Both:</span>
+df<span class="p">[</span><span class="kt">c</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="m">6</span><span class="p">),</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="s">&quot;d&quot;</span><span class="p">)]</span>
+</pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 </aside></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
@@ -12064,18 +12096,33 @@ Just use <a href="https://cran.r-project.org/package=dplyr">dplyr</a> or <a href
 </div>
 </div><aside class="notes">
 
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>dplyr examples here</li>
-<li>next: a "real" dataset</li>
-</ul>
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="o">?</span> mtcars
+mtcars2 <span class="o">&lt;-</span> tibble<span class="o">::</span>rownames_to_column<span class="p">(</span>mtcars<span class="p">)</span> <span class="o">%&gt;%</span> rename<span class="p">(</span>car<span class="o">=</span> rowname<span class="p">)</span>
+filter<span class="p">(</span>mtcars2<span class="p">,</span> gear <span class="o">==</span> <span class="m">4</span> <span class="o">&amp;</span> am <span class="o">==</span> <span class="m">1</span><span class="p">)</span>
+arrange<span class="p">(</span>mtcars2<span class="p">,</span> cyl<span class="p">,</span> mpg<span class="p">)</span> <span class="o">%&gt;%</span> select<span class="p">(</span>car<span class="p">,</span> cyl<span class="p">,</span> mpg<span class="p">,</span> disp<span class="p">)</span>
+<span class="kp">transform</span><span class="p">(</span>mtcars2<span class="p">,</span> pw <span class="o">=</span> hp <span class="o">/</span> wt<span class="p">)</span> <span class="o">%&gt;%</span>
+    arrange<span class="p">(</span><span class="o">-</span>pw<span class="p">)</span> <span class="o">%&gt;%</span>
+    select<span class="p">(</span>car<span class="p">,</span> pw<span class="p">,</span> mpg<span class="p">)</span> <span class="o">%&gt;%</span>
+    slice<span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">)</span>
+distinct<span class="p">(</span>mtcars2<span class="p">,</span> cyl<span class="p">)</span>
+group_by<span class="p">(</span>mtcars2<span class="p">,</span> cyl<span class="p">)</span> <span class="o">%&gt;%</span>
+    summarise<span class="p">(</span>count <span class="o">=</span> n<span class="p">(),</span>
+              avg_mpg <span class="o">=</span> <span class="kp">mean</span><span class="p">(</span>mpg<span class="p">),</span>
+              avg_hp <span class="o">=</span> <span class="kp">mean</span><span class="p">(</span>hp<span class="p">),</span>
+              avg_disp <span class="o">=</span> <span class="kp">mean</span><span class="p">(</span>disp<span class="p">))</span>
+ggplot<span class="p">(</span>mtcars2<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> hp<span class="p">,</span> y <span class="o">=</span> mpg<span class="p">,</span> group <span class="o">=</span> cyl<span class="p">))</span> <span class="o">+</span>
+    geom_point<span class="p">(</span>aes<span class="p">(</span>colour <span class="o">=</span> <span class="kp">as.factor</span><span class="p">(</span>cyl<span class="p">)))</span>
+</pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 </aside></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
@@ -12097,12 +12144,15 @@ Just use <a href="https://cran.r-project.org/package=dplyr">dplyr</a> or <a href
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="c1"># I&#39;m not going to remember this code</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Load this as it is used throughout</span>
+<span class="c1"># the next section</span>
 <span class="kc">letters</span> <span class="o">&lt;-</span> read.table<span class="p">(</span><span class="s">&quot;letter-recognition.data&quot;</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;,&quot;</span><span class="p">,</span> header<span class="o">=</span><span class="kc">FALSE</span><span class="p">);</span>
 <span class="kp">colnames</span><span class="p">(</span><span class="kc">letters</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;Letter&quot;</span><span class="p">,</span> <span class="s">&quot;Xbox&quot;</span><span class="p">,</span> <span class="s">&quot;Ybox&quot;</span><span class="p">,</span> <span class="s">&quot;Width&quot;</span><span class="p">,</span> <span class="s">&quot;Height&quot;</span><span class="p">,</span>
                        <span class="s">&quot;OnPix&quot;</span><span class="p">,</span> <span class="s">&quot;Xbar&quot;</span><span class="p">,</span> <span class="s">&quot;Ybar&quot;</span><span class="p">,</span> <span class="s">&quot;X2bar&quot;</span><span class="p">,</span> <span class="s">&quot;Y2bar&quot;</span><span class="p">,</span>
                        <span class="s">&quot;XYbar&quot;</span><span class="p">,</span> <span class="s">&quot;X2Ybar&quot;</span><span class="p">,</span> <span class="s">&quot;XY2bar&quot;</span><span class="p">,</span> <span class="s">&quot;Xedge&quot;</span><span class="p">,</span>
                        <span class="s">&quot;XedgeXY&quot;</span><span class="p">,</span> <span class="s">&quot;Yedge&quot;</span><span class="p">,</span> <span class="s">&quot;YedgeYX&quot;</span><span class="p">);</span>
+<span class="kp">head</span><span class="p">(</span><span class="kc">letters</span><span class="p">)</span>
+<span class="kp">dim</span><span class="p">(</span><span class="kc">letters</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12141,7 +12191,6 @@ Just use <a href="https://cran.r-project.org/package=dplyr">dplyr</a> or <a href
 <li>k-means, and EM is generalization</li>
 <li>Overlap: EM is both categories</li>
 <li>Curse of Dimensionality: why UL may be needed prior to SL</li>
-<li>Why feature transformation: how do we reduce dimensions?</li>
 </ul>
 
 </div>
@@ -12197,14 +12246,28 @@ Just use <a href="https://cran.r-project.org/package=dplyr">dplyr</a> or <a href
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>Intuition from k-nearest neighbor: If each sample occupies a certain amount of 'space' in the input space, the number of samples required to still 'cover' that space increases exponentially with the number of dimensions.</li>
+<li>Intuition from k-nearest neighbor: If each sample occupies a certain amount of 'space' in the input space, the number of samples required to still 'cover' that space increases exponentially with the number of dimensions. <em>(Sort of. See Vapnik-Chervonenkis dimension.)</em></li>
 <li>If possible: Don't add more dimensions. Either reduce dimensions, or increase samples.</li>
 <li>But... how to remove dimensions?</li>
 </ul>
 
 </div>
 </div>
-</div></div></section></section><section><section>
+</div><aside class="notes">
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Why feature transformation: how do we reduce dimensions?</li>
+</ul>
+
+</div>
+</div>
+</div>
+</aside></div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12239,7 +12302,11 @@ Just use <a href="https://cran.r-project.org/package=dplyr">dplyr</a> or <a href
 <li><em>Feature Selection</em>: Loosely, throw away dimensions/features.</li>
 <li>Information gain, Gini index, entropy, variance, statistical independence...</li>
 <li><em>Filtering</em>: Reduce features first, and then perform learning. Learning can't feed information 'back' to filtering.</li>
-<li><em>Wrapping</em>: Reduce features based on how learning performs.</li>
+<li><em>Wrapping</em>: Reduce features based on how learning performs.<ul>
+<li><em>Forward search:</em> Add features one by one. At each step, add the feature that helps the learner the most.</li>
+<li><em>Backward search:</em> Remove features one by one. At each step, discard the feature that impacts the learner the least.</li>
+</ul>
+</li>
 </ul>
 
 </div>
@@ -12254,6 +12321,7 @@ Just use <a href="https://cran.r-project.org/package=dplyr">dplyr</a> or <a href
 <ul>
 <li>Decision trees are sort of a form of wrapping</li>
 <li>Linear is the subset that I focus on</li>
+<li>"throw dimension away, check if it changed" is plenty viable actually</li>
 </ul>
 
 </div>
@@ -12334,7 +12402,21 @@ X=
 $$
 </div>
 </div>
-</div><div class="fragment">
+</div><aside class="notes">
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Show letters data here</li>
+</ul>
+
+</div>
+</div>
+</div>
+</aside><div class="fragment">
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12350,7 +12432,7 @@ $$
 
 </div>
 </div>
-</div></div><div class="fragment">
+</div></div></section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12364,7 +12446,7 @@ $$\sigma_A^2=\left\langle \left(a_i-\left\langle a_j \right\rangle _j\right)^2 \
 
 </div>
 </div>
-</div></div><div class="fragment">
+</div><div class="fragment">
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12450,7 +12532,24 @@ $$<ul>
 
 </div>
 </div>
-</div></div></section></section><section><section>
+</div><aside class="notes">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span>mtx <span class="o">&lt;-</span> <span class="kp">scale</span><span class="p">(</span>select<span class="p">(</span><span class="kc">letters</span><span class="p">,</span> <span class="o">-</span>Letter<span class="p">))</span>
+cm <span class="o">&lt;-</span> <span class="p">(</span><span class="kp">t</span><span class="p">(</span>mtx<span class="p">)</span> <span class="o">%*%</span> mtx<span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="kp">nrow</span><span class="p">(</span>mtx<span class="p">)</span> <span class="o">+</span> <span class="m">1</span><span class="p">)</span>
+cm
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+</aside></div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12480,7 +12579,7 @@ $$<ul>
 
 </div>
 </div>
-</div></div><div class="fragment">
+</div></div></section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12494,7 +12593,27 @@ $$<ul>
 
 </div>
 </div>
-</div></div></section></section><section><section>
+</div><aside class="notes">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span>r <span class="o">&lt;-</span> <span class="kp">eigen</span><span class="p">(</span>cm<span class="p">)</span>
+r<span class="o">$</span>values
+r<span class="o">$</span>vectors
+<span class="kp">dim</span><span class="p">(</span>r<span class="o">$</span>vectors<span class="p">)</span>
+lettersPca <span class="o">&lt;-</span> mtx <span class="o">%*%</span> r<span class="o">$</span>vectors
+<span class="kp">round</span><span class="p">(</span><span class="kp">t</span><span class="p">(</span>lettersPca<span class="p">)</span> <span class="o">%*%</span> lettersPca <span class="o">/</span> <span class="p">(</span><span class="kp">nrow</span><span class="p">(</span>lettersPca<span class="p">)</span> <span class="o">+</span> <span class="m">1</span><span class="p">),</span> <span class="m">3</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+</aside></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12546,7 +12665,25 @@ $$<ul>
 
 </div>
 </div>
-</div></div></section></section><section><section>
+</div><aside class="notes">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span>lettersDf <span class="o">&lt;-</span> <span class="kt">data.frame</span><span class="p">(</span>class <span class="o">=</span> <span class="kc">letters</span><span class="o">$</span>Letter<span class="p">,</span> pca <span class="o">=</span> lettersPca<span class="p">)</span>
+<span class="kp">head</span><span class="p">(</span>lettersDf<span class="p">)</span>
+decim <span class="o">&lt;-</span> sample_frac<span class="p">(</span>lettersDf<span class="p">,</span> <span class="m">0.025</span><span class="p">)</span>
+ggplot<span class="p">(</span>decim<span class="p">,</span> aes<span class="p">(</span>label <span class="o">=</span> <span class="kp">class</span><span class="p">,</span> pca.1<span class="p">,</span> pca.2<span class="p">,</span> colour <span class="o">=</span> <span class="kp">class</span><span class="p">))</span> <span class="o">+</span> geom_text<span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+</aside></div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12590,15 +12727,19 @@ $$<ul>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Other-References">Other References<a class="anchor-link" href="#Other-References">&#182;</a></h1><ul>
+<h1 id="References-Used">References Used<a class="anchor-link" href="#References-Used">&#182;</a></h1><ul>
 <li>Official R intro: <a href="https://cran.r-project.org/doc/manuals/R-intro.html">https://cran.r-project.org/doc/manuals/R-intro.html</a></li>
 <li>Evaluating the Design of the R Language (Morandat, Hill, Osvald, Vitek): <a href="http://r.cs.purdue.edu/pub/ecoop12.pdf">http://r.cs.purdue.edu/pub/ecoop12.pdf</a></li>
+<li>PCA Tutorial: <a href="http://www.cs.princeton.edu/picasso/mats/PCA-Tutorial-Intuition_jp.pdf">http://www.cs.princeton.edu/picasso/mats/PCA-Tutorial-Intuition_jp.pdf</a></li>
+<li>Machine Learning, Tom M. Mitchell</li>
+</ul>
+<h1 id="Other-Links">Other Links<a class="anchor-link" href="#Other-Links">&#182;</a></h1><ul>
 <li>Impatient R, <a href="http://www.burns-stat.com/documents/tutorials/impatient-r/">http://www.burns-stat.com/documents/tutorials/impatient-r/</a></li>
 <li>R: The Good Parts, <a href="http://blog.datascienceretreat.com/post/69789735503/r-the-good-parts">http://blog.datascienceretreat.com/post/69789735503/r-the-good-parts</a></li>
+<li>Two excellent textbooks, freely available as ebooks (and cheaply as real books):<ul>
 <li>ISLR (Intro. to Statistical Learning in R): <a href="http://www-bcf.usc.edu/~gareth/ISL/">http://www-bcf.usc.edu/~gareth/ISL/</a></li>
-<li><p>ESL (Elements of Statistical Learning): <a href="http://statweb.stanford.edu/~tibs/ElemStatLearn/">http://statweb.stanford.edu/~tibs/ElemStatLearn/</a></p>
-</li>
-<li><p>For PCA: <a href="http://www.cs.princeton.edu/picasso/mats/PCA-Tutorial-Intuition_jp.pdf">http://www.cs.princeton.edu/picasso/mats/PCA-Tutorial-Intuition_jp.pdf</a></p>
+<li>ESL (Elements of Statistical Learning): <a href="http://statweb.stanford.edu/~tibs/ElemStatLearn/">http://statweb.stanford.edu/~tibs/ElemStatLearn/</a></li>
+</ul>
 </li>
 </ul>
 
