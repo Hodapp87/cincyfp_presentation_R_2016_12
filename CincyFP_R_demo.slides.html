@@ -12019,6 +12019,10 @@ x <span class="o">*</span> x
 <span class="kp">prod</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="kc">NA</span><span class="p">,</span><span class="kc">NA</span><span class="p">,</span><span class="m">10</span><span class="p">),</span> na.rm <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
 <span class="c1"># NA != NaN != Inf:</span>
 <span class="kt">c</span><span class="p">(</span><span class="kp">sqrt</span><span class="p">(</span><span class="m">-1</span><span class="p">),</span> <span class="m">1</span><span class="o">/</span><span class="m">0</span><span class="p">)</span>
+<span class="c1"># Named indices:</span>
+pt <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="m">20</span><span class="p">,</span><span class="m">30</span><span class="p">)</span>
+<span class="kp">names</span><span class="p">(</span>pt<span class="p">)</span> <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">,</span> <span class="s">&quot;y&quot;</span><span class="p">,</span> <span class="s">&quot;z&quot;</span><span class="p">)</span>
+pt<span class="p">[</span><span class="s">&quot;x&quot;</span><span class="p">]</span>
 </pre></div>
 
 </div>
@@ -12033,18 +12037,21 @@ x <span class="o">*</span> x
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Dataframes">Dataframes<a class="anchor-link" href="#Dataframes">&#182;</a></h2><ul>
-<li>A sort of blending of matrices, arrays, and database tables.</li>
-<li>They are useful enough to spawn many imitators:<ul>
-<li><em>Python</em>: Pandas &amp; wrapped NumPy arrays, <a href="http://pandas.pydata.org/">http://pandas.pydata.org/</a></li>
-<li><em>Scala</em> (and JVM in general): Apache Spark distributed dataframes, <a href="https://spark.apache.org/docs/latest/sql-programming-guide.html#datasets-and-dataframes">https://spark.apache.org/docs/latest/sql-programming-guide.html#datasets-and-dataframes</a></li>
-<li><em>Haskell</em>: Frames, <a href="https://github.com/acowley/Frames">https://github.com/acowley/Frames</a><ul>
-<li>acowley incidentally does some embedded Haskell too</li>
+<li>A sort of blending of matrices, arrays, and database tables.  Type is per-column.</li>
+<li>Accessed by row range, column range, or both.</li>
+</ul>
+<h3 id="Many-imitators:">Many imitators:<a class="anchor-link" href="#Many-imitators:">&#182;</a></h3><ul>
+<li><em>Python</em>: Pandas, <a href="http://pandas.pydata.org/">http://pandas.pydata.org/</a><ul>
+<li>Stricter indexing (oriented for time-series)</li>
 </ul>
 </li>
+<li><em>Scala, Java, Python</em>: <a href="https://spark.apache.org/docs/latest/sql-programming-guide.html#datasets-and-dataframes">Apache Spark DataFrame</a><ul>
+<li>Closely tied with Spark SQL &amp; Catalyst; weakly-typed distributed <code>Dataset</code></li>
+</ul>
+</li>
+<li><em>Haskell</em>: Frames, <a href="https://github.com/acowley/Frames">https://github.com/acowley/Frames</a></li>
 <li><em>Clojure</em>: Incanter (?), <a href="http://incanter.org/">http://incanter.org/</a></li>
 <li><em>Julia</em>: <a href="https://github.com/JuliaStats/DataFrames.jl">https://github.com/JuliaStats/DataFrames.jl</a></li>
-</ul>
-</li>
 </ul>
 
 </div>
@@ -12320,7 +12327,6 @@ ggplot<span class="p">(</span>mtcars2<span class="p">,</span> aes<span class="p"
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li>Decision trees are sort of a form of wrapping</li>
-<li>Linear is the subset that I focus on</li>
 <li>"throw dimension away, check if it changed" is plenty viable actually</li>
 </ul>
 
@@ -12357,12 +12363,14 @@ ggplot<span class="p">(</span>mtcars2<span class="p">,</span> aes<span class="p"
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Then for samples as column vectors...
+<p>Then for $X$ containing samples as row vectors, $Y=X\mathcal{P}_x$:
 $$
 \mathcal{P}_x=
   \begin{bmatrix}
-    2 & -1 & 0 & 0 \\
-    0 & 0 & 1 & 1
+    2 & 0 \\
+    -1 & 0 \\
+    0 & 1 \\
+    0 & 1
   \end{bmatrix}
 $$</p>
 
@@ -12456,11 +12464,26 @@ $$\sigma_A^2=\left\langle \left(a_i-\left\langle a_j \right\rangle _j\right)^2 \
 <li>Consider another sample $B=\left\{b_1, b_2, \dots\right\}$, and assume that $\mu_A=\mu_B=0$ for sanity</li>
 <li>Covariance of $A$ and $B$:
 $$\sigma_{AB}^2=\left\langle a_i b_i \right\rangle_i=\frac{1}{n-1}\sum_i^n a_i b_i$$</li>
+<li>If $\sigma_A^2=1$ and $\sigma_B^2=1$ then $\sigma_{AB}^2=\rho_{A,B}=\textrm{corr}(A,B)$ (Pearson's correlation coefficient)</li>
 </ul>
 
 </div>
 </div>
-</div></div><div class="fragment">
+</div><aside class="notes">
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Covariance is where this starts to tell us something about our dimensions</li>
+</ul>
+
+</div>
+</div>
+</div>
+</aside></div><div class="fragment">
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12631,7 +12654,7 @@ lettersPca <span class="o">&lt;-</span> mtx <span class="o">%*%</span> r<span cl
 
 </div>
 </div>
-</div><div class="fragment">
+</div></section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12648,7 +12671,7 @@ lettersPca <span class="o">&lt;-</span> mtx <span class="o">%*%</span> r<span cl
 
 </div>
 </div>
-</div></div><div class="fragment">
+</div><div class="fragment">
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12660,6 +12683,7 @@ lettersPca <span class="o">&lt;-</span> mtx <span class="o">%*%</span> r<span cl
 <li>Or, let $P_d$ equal the first $d$ columns of $P$ ($m\times d$ matrix), then $Y_d=XP_d$</li>
 </ul>
 </li>
+<li>Rule of thumb: Keep enough dimensions for 90% of total variance</li>
 <li>'Lossy' reconstruction back into original $m$-dimensional space: $\hat{X}=Y_dP_d^\top$</li>
 </ul>
 
@@ -12667,12 +12691,26 @@ lettersPca <span class="o">&lt;-</span> mtx <span class="o">%*%</span> r<span cl
 </div>
 </div><aside class="notes">
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It's provable that this provides the "best" reconstruction (by reconstruction error)</p>
+
+</div>
+</div>
+</div>
+</aside><aside class="notes">
+
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>lettersDf <span class="o">&lt;-</span> <span class="kt">data.frame</span><span class="p">(</span>class <span class="o">=</span> <span class="kc">letters</span><span class="o">$</span>Letter<span class="p">,</span> pca <span class="o">=</span> lettersPca<span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span><span class="kp">cumsum</span><span class="p">(</span>r<span class="o">$</span>values<span class="p">)</span> <span class="o">/</span> <span class="kp">sum</span><span class="p">(</span>r<span class="o">$</span>values<span class="p">)</span>
+
+lettersDf <span class="o">&lt;-</span> <span class="kt">data.frame</span><span class="p">(</span>class <span class="o">=</span> <span class="kc">letters</span><span class="o">$</span>Letter<span class="p">,</span> pca <span class="o">=</span> lettersPca<span class="p">)</span>
 <span class="kp">head</span><span class="p">(</span>lettersDf<span class="p">)</span>
 decim <span class="o">&lt;-</span> sample_frac<span class="p">(</span>lettersDf<span class="p">,</span> <span class="m">0.025</span><span class="p">)</span>
 ggplot<span class="p">(</span>decim<span class="p">,</span> aes<span class="p">(</span>label <span class="o">=</span> <span class="kp">class</span><span class="p">,</span> pca.1<span class="p">,</span> pca.2<span class="p">,</span> colour <span class="o">=</span> <span class="kp">class</span><span class="p">))</span> <span class="o">+</span> geom_text<span class="p">()</span>
@@ -12691,6 +12729,7 @@ ggplot<span class="p">(</span>decim<span class="p">,</span> aes<span class="p">(
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Principal-Component-Analysis">Principal Component Analysis<a class="anchor-link" href="#Principal-Component-Analysis">&#182;</a></h2><ul>
 <li>We have thus just derived (in abbreviated fashion) a ridiculously useful tool called PCA (Principle Component Analysis).<ul>
+<li>It's often done with SVD rather than eigendecomposition (better-behaved numerically, and provides other information)</li>
 <li>It is a linear algebra method that tries to find uncorrelated Gaussians.  Uncorrelated sometimes coincides with statistically independent.</li>
 <li><em>ICA (Independent Componenent Analysis)</em> derives independent features using probability and information theory.</li>
 </ul>
@@ -12699,7 +12738,7 @@ ggplot<span class="p">(</span>decim<span class="p">,</span> aes<span class="p">(
 
 </div>
 </div>
-</div><div class="fragment">
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12721,7 +12760,7 @@ ggplot<span class="p">(</span>decim<span class="p">,</span> aes<span class="p">(
 
 </div>
 </div>
-</div></div></section></section><section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -12731,7 +12770,8 @@ ggplot<span class="p">(</span>decim<span class="p">,</span> aes<span class="p">(
 <li>Official R intro: <a href="https://cran.r-project.org/doc/manuals/R-intro.html">https://cran.r-project.org/doc/manuals/R-intro.html</a></li>
 <li>Evaluating the Design of the R Language (Morandat, Hill, Osvald, Vitek): <a href="http://r.cs.purdue.edu/pub/ecoop12.pdf">http://r.cs.purdue.edu/pub/ecoop12.pdf</a></li>
 <li>PCA Tutorial: <a href="http://www.cs.princeton.edu/picasso/mats/PCA-Tutorial-Intuition_jp.pdf">http://www.cs.princeton.edu/picasso/mats/PCA-Tutorial-Intuition_jp.pdf</a></li>
-<li>Machine Learning, Tom M. Mitchell</li>
+<li>Machine Learning (Mitchell)</li>
+<li>Ch. 11, Mining of Massive Datasets (Leskovec, Rajaraman, Ullman): <a href="http://infolab.stanford.edu/~ullman/mmds/book.pdf">http://infolab.stanford.edu/~ullman/mmds/book.pdf</a></li>
 </ul>
 <h1 id="Other-Links">Other Links<a class="anchor-link" href="#Other-Links">&#182;</a></h1><ul>
 <li>Impatient R, <a href="http://www.burns-stat.com/documents/tutorials/impatient-r/">http://www.burns-stat.com/documents/tutorials/impatient-r/</a></li>
