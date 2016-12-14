@@ -11,7 +11,8 @@ Presentation slides are in `CincyFP_R_slides.ipynb`, with the rendered
 HTML in `CincyFP_R_demo.slides.html`.  The script `slides.sh` will
 regenerate this HTML.  I'm not sure of a way to view this HTML
 directly from GitHub; it may just have to be checked out and viewed
-locally from the browser.  Note that as it's
+locally from the browser (GitHub will, however, render the `.ipynb`
+file just fine in-browser, just not as slides).  Note that as it's
 using [reveal.js](http://lab.hakim.se/reveal-js/), pressing the `s`
 key will create a second window showing notes, next slide, timer, and
 clock.
