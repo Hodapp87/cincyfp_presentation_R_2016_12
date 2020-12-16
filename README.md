@@ -8,7 +8,7 @@ December 13, 2016.
 
 Presentation slides
 are
-[here](https://hodapple.com/blag/assets_external/2016-12-13-cincyfp-r-crosspost/CincyFP_R_slides.slides.html).
+[here](https://hodapple.com/blag/posts/2016-12-13-cincyfp-r-crosspost/CincyFP_R_slides.slides.html).
 Note that as it's using [reveal.js](http://lab.hakim.se/reveal-js/),
 pressing the `s` key will create a second window showing notes, next
 slide, timer, and clock.
